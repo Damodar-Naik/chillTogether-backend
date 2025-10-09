@@ -3,14 +3,17 @@ import http from 'http';
 import { Request, Response } from 'express';
 var randomstring = require("randomstring");
 import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const app = express();
 import webSocket from 'ws';
 const server = http.createServer(app);
 const ws = new webSocket.Server({ server });
-
 app.use(cors({
-    origin: process.env.CORS_ORIGINS?.split(',') || 'http://localhost:3000',
+    origin: process.env.CORS_ORIGINS?.split(',') || '',
     credentials: true,
 }));
 
